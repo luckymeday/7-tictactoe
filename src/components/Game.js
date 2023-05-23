@@ -41,18 +41,24 @@ function Game() {
 
   //Handle player
   const handleClick = (i) => {
-    const newSquares = squares.slice();
+    const newSquares = squares.slice(); // slice is for a shallow copy
 
     if (calculateWinner(newSquares) || newSquares[i]) {
       return;
       //if there is a winner or the square is already occupied, click unavailable
     }
+    console.log("newSqaures", newSquares);
     newSquares[i] = xIsNext ? "X" : "O";
+
+    setSquares(newSquares);
+    setXIsNext((prevState) => !prevState); // what is this for?
   };
 
   //Restart game
   const handleRestart = () => {
-    "Your code here";
+    setSquares(Array(9).fill(null));
+    setXIsNext(true);
+    setWinner(null);
   };
 
   return (

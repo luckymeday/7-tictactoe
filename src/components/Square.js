@@ -4,7 +4,7 @@ function Square({ value, handleClick }) {
   return (
     <button className={value} onClick={handleClick}>
       {value}
-      {/* handleClick or onClick? */}
+      {/* why using onClick only here? */}
     </button>
   );
 }
