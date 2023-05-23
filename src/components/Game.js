@@ -5,6 +5,7 @@ function Game() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
   const [winner, setWinner] = useState(null);
+  // const [history, setHistory] = useState(null)
 
   //Declaring a Winner
   useEffect(() => {
@@ -30,7 +31,7 @@ function Game() {
       if (
         squares[a] &&
         squares[a] === squares[b] &&
-        squares[a] === squares[c]
+        squares[a] === squares[c] // why this logic.. dont't understand
       ) {
         return squares[a];
       }
@@ -40,11 +41,17 @@ function Game() {
 
   //Handle player
   const handleClick = (i) => {
-    "Your code here";
+    const newSquares = squares.slice();
+
+    if (calculateWinner(newSquares) || newSquares[i]) {
+      return;
+      //if there is a winner or the square is already occupied, click unavailable
+    }
+    newSquares[i] = xIsNext ? "X" : "O";
   };
 
   //Restart game
-  const handlRestart = () => {
+  const handleRestart = () => {
     "Your code here";
   };
 
@@ -53,9 +60,9 @@ function Game() {
       <h2 className="result">Winner is: {winner ? winner : "N/N"}</h2>
       <div className="game">
         <span className="player">Next player is: {xIsNext ? "X" : "O"}</span>
-        <Board squares={"Your code here"} handleClick={"Your code here"} />
+        <Board squares={squares} handleClick={handleClick} />
       </div>
-      <button onClick={"Your code here"} className="restart-btn">
+      <button onClick={handleRestart} className="restart-btn">
         Restart
       </button>
     </div>
