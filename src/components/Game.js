@@ -9,8 +9,10 @@ function Game() {
 
   //Declaring a Winner
   useEffect(() => {
-    "Your code here";
+    const newWinner = calculateWinner(squares);
+    setWinner(newWinner);
   }, [squares]);
+  // If squares changed, system working
 
   //function to check if a player has won.
   //If a player has won, we can display text such as “Winner: X” or “Winner: O”.
@@ -31,9 +33,9 @@ function Game() {
       if (
         squares[a] &&
         squares[a] === squares[b] &&
-        squares[a] === squares[c] // why this logic.. dont't understand
+        squares[a] === squares[c] // Question: Why this logic.. dont't understand
       ) {
-        return squares[a];
+        return squares[a]; // Question: Is if different from <return null> below?
       }
     }
     return null;
@@ -41,17 +43,17 @@ function Game() {
 
   //Handle player
   const handleClick = (i) => {
-    const newSquares = squares.slice(); // slice is for a shallow copy
+    const newSquares = squares.slice(); // slice() is for a shallow copy
 
     if (calculateWinner(newSquares) || newSquares[i]) {
       return;
-      //if there is a winner or the square is already occupied, click unavailable
+      // If there is a winner or the square is already occupied, click is unavailable.
     }
     console.log("newSqaures", newSquares);
     newSquares[i] = xIsNext ? "X" : "O";
 
     setSquares(newSquares);
-    setXIsNext((prevState) => !prevState); // what is this for?
+    setXIsNext((prevState) => !prevState); // Question: What is this precState for?
   };
 
   //Restart game
